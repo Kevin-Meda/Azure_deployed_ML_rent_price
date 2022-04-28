@@ -1,7 +1,14 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 import util
 
 app = Flask(__name__)
+
+'''
+
+@app.route('/')
+def home():
+    return render_template('app.html')
+'''
 
 @app.route('/get_location_names', methods=['GET'])
 def get_location_names():
@@ -10,7 +17,7 @@ def get_location_names():
     })
     response.headers.add('Access-Control-Allow-Origin', '*')
 
-    return response
+    return response, render_template('app.html')
 
 @app.route('/predict_home_price', methods=['POST'])
 def predict_home_price():
